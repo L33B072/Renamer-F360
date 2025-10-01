@@ -1,74 +1,96 @@
-# Fusion 360 File Renamer - Installation Guide
+# Fusion 360 Cloud File Renamer - Installation Guide
 
 ## Quick Start
 
-Follow these steps to install and use the Fusion 360 File Renamer add-in:
+Follow these steps to install and use the Fusion 360 Cloud File Renamer scripts:
 
-### 1. Installation
+### Option 1: Run Scripts Directly (Recommended)
 
-1. **Locate your Fusion 360 Add-ins directory:**
-   - **Windows**: `%APPDATA%\Autodesk\Autodesk Fusion 360\API\AddIns\`
-   - **Mac**: `~/Library/Application Support/Autodesk/Autodesk Fusion 360/API/AddIns/`
+**No installation required!** Simply download and run:
 
-2. **Copy the files:**
-   - Copy the entire `FileRenamer` folder to the add-ins directory
-   - Copy the `manifest` file to the same add-ins directory
+1. **Download the script files:**
+   - `SimpleCloudRenamer.py` (for basic use)
+   - `CloudFileRenamer.py` (for advanced features)
 
-3. **Directory structure should look like:**
-   ```
-   AddIns/
-   ├── manifest
-   └── FileRenamer/
-       ├── FileRenamer.py
-       ├── commands/
-       ├── lib/
-       └── resources/
-   ```
+2. **Open Fusion 360** and load a project with files to rename
 
-   **Note**: If you cloned this repository, the files are in the `Renamer-F360` folder.
+3. **Run the script:**
+   - Press **Shift+S** or go to **Tools > Scripts and Add-Ins**
+   - Click the **Scripts** tab
+   - Click the **green "+" button**
+   - Browse and select your downloaded script file
+   - Click **Run**
 
-### 2. Enable the Add-in
+### Option 2: Install to Scripts Folder
 
-1. Open Fusion 360
-2. Go to **Utilities** → **Scripts and Add-Ins** (or press Shift+S)
-3. Click the **Add-Ins** tab
-4. Find "File Renamer" in the list
-5. Click **Run** to enable it temporarily, or **Run on Startup** for permanent installation
+For permanent access without browsing each time:
 
-### 3. Using the Add-in
+1. **Locate your Fusion 360 Scripts directory:**
+   - **Windows**: `%APPDATA%\Autodesk\Autodesk Fusion 360\API\Scripts\`
+   - **Mac**: `~/Library/Application Support/Autodesk/Autodesk Fusion 360/API/Scripts/`
 
+2. **Copy the script files:**
+   - Copy `SimpleCloudRenamer.py` and/or `CloudFileRenamer.py` to the Scripts directory
+
+3. **Access from Scripts menu:**
+   - Scripts will appear in the Scripts and Add-Ins dialog for easy access
+
+## Usage
+
+### SimpleCloudRenamer.py
+**Best for beginners:**
 1. Open a Fusion 360 project with files that need renaming
-2. Go to the **Modify** panel in the Design workspace
-3. Look for the **Rename Files** button
-4. Click it to open the renaming dialog
-5. Configure your options and click **Execute**
+2. Run the script (using either method above)
+3. Review the list of files to be renamed
+4. Click "Yes" to proceed with bulk rename
+
+### CloudFileRenamer.py
+**Advanced features:**
+1. Open a Fusion 360 project with files that need renaming
+2. Run the script (using either method above)
+3. Review each file individually:
+   - See problematic characters highlighted
+   - Choose Yes/No/Cancel for each file
+   - View folder path for each file
+4. Confirm final batch operation
+5. Review detailed results
 
 ## Troubleshooting
 
-### Add-in doesn't appear
-- Verify file locations are correct
-- Restart Fusion 360 completely
-- Check that the `manifest` file is in the root add-ins directory
-- Enable the add-in from Scripts and Add-Ins dialog
+### "Please open a document first" error
+- Make sure you have a Fusion 360 project/document open before running the script
+- The script needs access to a project to scan cloud files
 
-### Python errors
-- The add-in requires Python 3.7+ (included with Fusion 360)
-- Check that all files were copied correctly
-- Look at the Fusion 360 console for detailed error messages
+### Script doesn't find any files
+- Your project may already have clean filenames
+- Check that files actually contain spaces or special characters
+- Try with a project that has files like "My File (v2).f3d"
 
-### No files found to rename
-- Make sure your project has components with special characters
-- Check that the detection options are enabled
-- Try with a project that has files with spaces or special characters
+### Some files fail to rename
+- Files may be in use by other users in shared projects
+- Some files might be read-only or locked
+- Check the detailed error messages provided by the script
+
+### Script takes a long time
+- Large projects with many nested folders take time to scan
+- Wait for the script to complete its recursive scanning
+- The script will show progress messages
 
 ## Testing
 
-Run the included test script to verify functionality:
+Run the included test script to verify the filename cleaning logic:
 ```bash
 python test_utilities.py
 ```
 
-This will test the core file renaming logic without requiring Fusion 360.
+This tests the core filename cleaning functions without requiring Fusion 360.
+
+## Which Script Should I Use?
+
+- **New users**: Start with `SimpleCloudRenamer.py` - it's straightforward and handles most use cases
+- **Advanced users**: Use `CloudFileRenamer.py` for detailed control and preview of each file
+- **Large projects**: `SimpleCloudRenamer.py` is faster for bulk operations
+- **Selective renaming**: `CloudFileRenamer.py` lets you approve each file individually
 
 ## Support
 

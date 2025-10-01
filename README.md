@@ -1,119 +1,151 @@
-# Fusion 360 File Renamer Add-in
+# Fusion 360 Cloud File Renamer Scripts
 
-A Fusion 360 add-in that scans through all file names in a Fusion 360 project and renames files containing special characters with clean, standard characters.
+Fusion 360 Python scripts that scan through all file names in your cloud projects and rename files containing special characters with clean, standard characters.
 
 ## Features
 
-- **Automatic Scanning**: Scans all components and files in the active Fusion 360 project
+- **Cloud File Support**: Works directly with Fusion 360's cloud-based file system
+- **Automatic Scanning**: Recursively scans all folders and files in the active project
 - **Special Character Detection**: Identifies files with spaces, special characters (!@#$%^&*), and unicode characters
-- **Batch Renaming**: Rename multiple files at once with a single operation
-- **Preview Changes**: See exactly what changes will be made before applying them
-- **Customizable Replacement**: Choose your preferred replacement character (default: underscore)
-- **Safe Operation**: Preserves file relationships and references within Fusion 360
+- **Individual File Preview**: Review each file individually before renaming
+- **Batch Operations**: Apply changes to multiple approved files at once
+- **Safe Operation**: Shows exactly what changes will be made with problematic characters highlighted
+- **Error Handling**: Graceful handling of rename failures with detailed feedback
 
-## Installation
+## Available Scripts
 
-1. Download the add-in files
-2. Copy the entire `FileRenamer` folder to your Fusion 360 add-ins directory:
-   - **Windows**: `%APPDATA%\Autodesk\Autodesk Fusion 360\API\AddIns\`
-   - **Mac**: `~/Library/Application Support/Autodesk/Autodesk Fusion 360/API/AddIns/`
-3. Copy the `manifest` file to the same add-ins directory
-4. Restart Fusion 360
-5. Enable the add-in from the Scripts and Add-Ins dialog
+### 1. SimpleCloudRenamer.py
+**Best for beginners** - A streamlined script that:
+- Uses default settings (replaces spaces and special chars with underscores)
+- Shows a simple list of all files to be renamed
+- Performs bulk rename with one confirmation dialog
 
-## Usage
+### 2. CloudFileRenamer.py  
+**Advanced version** - Full-featured script that:
+- Shows individual file previews with problematic characters highlighted
+- Allows per-file approval (Yes/No/Cancel for each file)
+- Displays folder paths for each file
+- Provides detailed rename results and error reporting
 
-1. Open a Fusion 360 project with files that need renaming
-2. Navigate to the **Modify** panel in the toolbar
-3. Click the **Rename Files** button
-4. Configure your renaming options:
-   - Replace spaces with underscores
-   - Replace special characters
-   - Replace unicode characters
-   - Convert to lowercase
-   - Custom replacement character
-5. Review the preview of changes
-6. Click **Execute** to apply the changes
+## Installation & Usage
+
+### Method 1: Run as Scripts (Recommended)
+1. **Download** the script files (`SimpleCloudRenamer.py` and/or `CloudFileRenamer.py`)
+2. **Open Fusion 360** and load a project with files that need renaming
+3. **Open Scripts and Add-Ins** (Shift+S or Tools menu)
+4. **Go to Scripts tab**
+5. **Click the green "+" button** and browse to select your downloaded script
+6. **Click "Run"** to execute the script
+
+### Method 2: Add to Scripts Folder
+1. Place script files in your Fusion 360 Scripts directory:
+   - **Windows**: `%APPDATA%\Autodesk\Autodesk Fusion 360\API\Scripts\`
+   - **Mac**: `~/Library/Application Support/Autodesk/Autodesk Fusion 360/API/Scripts/`
+2. Scripts will appear in the Scripts and Add-Ins dialog for easy access
+
+## How It Works
+
+1. **Open a project** in Fusion 360 that contains files with special characters
+2. **Run the script** through Scripts and Add-Ins
+3. **Script scans** your entire project recursively through all folders
+4. **Review files** - script shows you each problematic file with issues highlighted
+5. **Approve changes** - choose which files to rename
+6. **Batch rename** - all approved files are renamed in Fusion 360's cloud storage
 
 ## Character Replacement Rules
 
 ### Default Behavior
 - **Spaces** → Underscores (`_`)
 - **Special Characters** (`!@#$%^&*()+=[]{};"'|<>?,.\/\`~`) → Underscores (`_`)
-- **Unicode Characters** → Removed or replaced with underscores
+- **Unicode Characters** → Removed (keeps only ASCII characters)
 - **Multiple consecutive replacements** → Single replacement character
 - **Leading/trailing replacements** → Removed
 
 ### Examples
 - `My Project File.f3d` → `My_Project_File.f3d`
 - `Component (v2).ipt` → `Component_v2_.ipt`
-- `测试文件.step` → `_.step` (unicode removed)
+- `测试文件.step` → `unnamed_file.step` (unicode removed)
 - `File!!!Name` → `File_Name`
+- `"Bad/File\Name"` → `Bad_File_Name`
 
-## File Types Supported
+## Supported File Types
 
-The add-in works with:
-- Fusion 360 components and assemblies
-- Referenced files and documents
-- Imported geometry and sketches
-- Any named elements within the project
+The scripts work with all file types in Fusion 360's cloud storage:
+- Fusion 360 design files (.f3d)
+- CAD files (.step, .iges, .sat, etc.)
+- Drawing files (.dwg, .dxf)
+- Image and document files
+- Any files stored in your Fusion 360 project folders
 
 ## Safety Features
 
-- **Preview Mode**: Always shows changes before applying them
-- **Validation**: Checks for valid filenames and system restrictions
-- **Error Handling**: Graceful handling of rename failures
-- **Preservation**: Maintains file relationships and references
+- **Individual Preview**: See exactly what each file will be renamed to
+- **Approval Required**: Scripts never rename files without your explicit approval
+- **Error Handling**: Graceful handling of files that can't be renamed
+- **Detailed Results**: Shows success/failure status for each operation
+- **Non-destructive**: Only changes file names, never file content
 
 ## Troubleshooting
 
 ### Common Issues
 
-**Add-in doesn't appear in toolbar**
-- Verify files are in correct add-ins directory
-- Check that manifest file is present
-- Restart Fusion 360 completely
-- Enable add-in in Scripts and Add-Ins dialog
+**"Please open a document first" error**
+- Make sure you have a Fusion 360 project/document open before running the script
+- The script needs access to the current project to scan files
 
-**Rename operation fails**
-- Some files may be read-only or locked
-- Check file permissions
-- Ensure project is not shared/locked by another user
+**Script doesn't find any files**
+- Your project may already have clean filenames
+- Check that files actually contain spaces or special characters
 
-**Preview shows no files**
-- Project may already have clean filenames
-- Check if special character detection options are enabled
+**Some files fail to rename**
+- Files may be in use by other users in shared projects
+- Some files might be read-only or locked
+- Check the detailed error messages provided by the script
+
+**Script appears to hang**
+- Large projects with many files may take time to scan
+- Wait for the script to complete its recursive folder scanning
 
 ### Error Messages
 
-If you encounter errors, the add-in will display descriptive messages. Common solutions:
-- Save your project before running the add-in
-- Ensure you have write permissions to the project
-- Close any external references to the files being renamed
+The scripts provide detailed error messages. Common solutions:
+- Ensure you have edit permissions for the project
+- Make sure files aren't currently open in other applications
+- Try running the script again if network issues caused failures
 
 ## Development
 
-### Project Structure
+### Repository Structure
 ```
-FileRenamer/
-├── FileRenamer.py          # Main add-in entry point
-├── commands/
-│   ├── __init__.py
-│   └── RenameFilesCommand.py   # Main command implementation
-├── lib/
-│   ├── __init__.py
-│   └── file_utils.py       # Utility functions for file operations
-└── resources/              # UI resources and icons
+Renamer-F360/
+├── SimpleCloudRenamer.py    # Simple version for basic use
+├── CloudFileRenamer.py      # Advanced version with full preview
+├── test_utilities.py        # Test file for validation
+├── manifest                 # Fusion 360 manifest file
+├── INSTALL.md              # Installation instructions
+└── README.md               # This file
+```
+
+### Testing
+Run `test_utilities.py` to validate the filename cleaning functions:
+```python
+python test_utilities.py
 ```
 
 ### API References
 - [Fusion 360 API Documentation](https://help.autodesk.com/view/fusion360/ENU/?guid=GUID-A92A4B10-3781-4925-94C6-47DA85A4F65A)
-- [Python API Reference](https://help.autodesk.com/view/fusion360/ENU/?guid=GUID-7B5A90C8-E94C-48DA-B16B-430729B734DC)
+- [Fusion 360 Data Management API](https://help.autodesk.com/view/fusion360/ENU/?guid=GUID-BD6B2B0C-F982-41C8-94DC-F15C8B9A75C8)
+
+## Contributing
+
+Feel free to submit issues, feature requests, or pull requests to improve these scripts.
 
 ## License
 
-This add-in is provided as-is for educational and development purposes. Please test thoroughly before using in production environments.
+This project is provided as-is for educational and development purposes. Please test thoroughly before using in production environments.
 
 ## Version History
 
-- **v1.0.0**: Initial release with basic file renaming functionality
+- **v2.0.0**: Simplified to script-based approach, added cloud file support
+- **v1.5.0**: Added individual file preview and approval
+- **v1.0.0**: Initial add-in release

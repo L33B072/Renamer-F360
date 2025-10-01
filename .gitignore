@@ -41,3 +41,13 @@ Thumbs.db
 # Fusion 360 specific
 *.f3d.bak
 *.f3z.bak
+*.dwl
+*.dwl2
+
+# Test files and temporary content
+test_output/
+temp/
+*.tmp
+
+# Personal configuration files
+config_personal.py

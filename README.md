@@ -32,11 +32,12 @@ Fusion 360 Python scripts that scan through all file names in your cloud project
 ### Method 1: Run as Scripts (Recommended)
 1. **Download** the script folders (`SimpleCloudRenamer/` and/or `CloudFileRenamer/`)
    - Each folder contains both the `.py` script file and `.manifest` file
-2. **Open Fusion 360** and load a project with files that need renaming
-3. **Open Scripts and Add-Ins** (Shift+S or Tools menu)
-4. **Go to Scripts tab**
-5. **Click the green "+" button** and browse to select the script folder
-6. **Click "Run"** to execute the script
+2. **Open Fusion 360** and click into a project with files that need renaming
+3. **Open one file** from the project that contains data
+4. **Open Scripts and Add-Ins** (Shift+S or Tools menu)
+5. **Go to Scripts tab**
+6. **Click the green "+" button** and browse to select the script folder
+7. **Click "Run"** to execute the script
 
 ### Method 2: Add to Scripts Folder
 1. Copy the script folders to your Fusion 360 Scripts directory:

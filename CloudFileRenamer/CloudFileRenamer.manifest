@@ -1,0 +1,13 @@
+{
+	"autodeskProduct": "Fusion",
+	"type": "script",
+	"id": "6b4ed6b1-70b7-4e55-9a2a-00f45bd25db3",
+	"author": "L33B072",
+	"description": {
+		"": "Advanced Fusion 360 script to rename cloud files with individual preview and approval"
+	},
+	"version": "2.0.0",
+	"runOnStartup": false,
+	"supportedOS": "windows|mac",
+	"editEnabled": true
+}

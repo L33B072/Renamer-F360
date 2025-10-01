@@ -30,17 +30,19 @@ Fusion 360 Python scripts that scan through all file names in your cloud project
 ## Installation & Usage
 
 ### Method 1: Run as Scripts (Recommended)
-1. **Download** the script files (`SimpleCloudRenamer.py` and/or `CloudFileRenamer.py`)
+1. **Download** the script folders (`SimpleCloudRenamer/` and/or `CloudFileRenamer/`)
+   - Each folder contains both the `.py` script file and `.manifest` file
 2. **Open Fusion 360** and load a project with files that need renaming
 3. **Open Scripts and Add-Ins** (Shift+S or Tools menu)
 4. **Go to Scripts tab**
-5. **Click the green "+" button** and browse to select your downloaded script
+5. **Click the green "+" button** and browse to select the script folder
 6. **Click "Run"** to execute the script
 
 ### Method 2: Add to Scripts Folder
-1. Place script files in your Fusion 360 Scripts directory:
+1. Copy the script folders to your Fusion 360 Scripts directory:
    - **Windows**: `%APPDATA%\Autodesk\Autodesk Fusion 360\API\Scripts\`
    - **Mac**: `~/Library/Application Support/Autodesk/Autodesk Fusion 360/API/Scripts/`
+   - Copy entire folders: `SimpleCloudRenamer/` and/or `CloudFileRenamer/`
 2. Scripts will appear in the Scripts and Add-Ins dialog for easy access
 
 ## How It Works
@@ -118,12 +120,16 @@ The scripts provide detailed error messages. Common solutions:
 ### Repository Structure
 ```
 Renamer-F360/
-├── SimpleCloudRenamer.py    # Simple version for basic use
-├── CloudFileRenamer.py      # Advanced version with full preview
-├── test_utilities.py        # Test file for validation
-├── manifest                 # Fusion 360 manifest file
-├── INSTALL.md              # Installation instructions
-└── README.md               # This file
+├── SimpleCloudRenamer/          # Simple script folder
+│   ├── SimpleCloudRenamer.py    # Simple version for basic use
+│   └── SimpleCloudRenamer.manifest # Script manifest file
+├── CloudFileRenamer/            # Advanced script folder  
+│   ├── CloudFileRenamer.py      # Advanced version with full preview
+│   └── CloudFileRenamer.manifest   # Script manifest file
+├── test_utilities.py            # Test file for validation
+├── manifest                     # Legacy add-in manifest file
+├── INSTALL.md                  # Installation instructions
+└── README.md                   # This file
 ```
 
 ### Testing

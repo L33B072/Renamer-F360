@@ -51,3 +51,7 @@ temp/
 
 # Personal configuration files
 config_personal.py
+
+# Keep script folder structure but ignore any temp files within
+*/temp/
+*/*.tmp

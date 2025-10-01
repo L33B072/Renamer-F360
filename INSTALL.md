@@ -8,9 +8,10 @@ Follow these steps to install and use the Fusion 360 Cloud File Renamer scripts:
 
 **No installation required!** Simply download and run:
 
-1. **Download the script files:**
-   - `SimpleCloudRenamer.py` (for basic use)
-   - `CloudFileRenamer.py` (for advanced features)
+1. **Download the script folders:**
+   - `SimpleCloudRenamer/` folder (for basic use)
+   - `CloudFileRenamer/` folder (for advanced features)
+   - Each folder contains both the `.py` file and `.manifest` file
 
 2. **Open Fusion 360** and load a project with files to rename
 
@@ -18,7 +19,7 @@ Follow these steps to install and use the Fusion 360 Cloud File Renamer scripts:
    - Press **Shift+S** or go to **Tools > Scripts and Add-Ins**
    - Click the **Scripts** tab
    - Click the **green "+" button**
-   - Browse and select your downloaded script file
+   - Browse and select the script folder (not the .py file)
    - Click **Run**
 
 ### Option 2: Install to Scripts Folder
@@ -29,11 +30,12 @@ For permanent access without browsing each time:
    - **Windows**: `%APPDATA%\Autodesk\Autodesk Fusion 360\API\Scripts\`
    - **Mac**: `~/Library/Application Support/Autodesk/Autodesk Fusion 360/API/Scripts/`
 
-2. **Copy the script files:**
-   - Copy `SimpleCloudRenamer.py` and/or `CloudFileRenamer.py` to the Scripts directory
+2. **Copy the script folders:**
+   - Copy `SimpleCloudRenamer/` and/or `CloudFileRenamer/` folders to the Scripts directory
+   - Make sure to copy the entire folder (containing both .py and .manifest files)
 
 3. **Access from Scripts menu:**
-   - Scripts will appear in the Scripts and Add-Ins dialog for easy access
+   - Script folders will appear in the Scripts and Add-Ins dialog for easy access
 
 ## Usage
 

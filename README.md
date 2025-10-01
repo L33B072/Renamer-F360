@@ -36,7 +36,7 @@ Fusion 360 Python scripts that scan through all file names in your cloud project
 3. **Open one file** from the project that contains data
 4. **Open Scripts and Add-Ins** (Shift+S or Tools menu)
 5. **Go to Scripts tab**
-6. **Click the green "+" button** and browse to select the script folder
+6. **Click the "+" button** and browse to select the local folder with the downloaded script
 7. **Click "Run"** to execute the script
 
 ### Method 2: Add to Scripts Folder
